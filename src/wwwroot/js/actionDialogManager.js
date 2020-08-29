@@ -52,7 +52,7 @@ var actionDialogManager = {
 
   newFiles: function() {
     var allowed_exts = "";
-    if(serverSettings.editorAllowedExts !== false) {
+    if(serverSettings.editorAllowedExts) {
       allowed_exts += "<br>Povolené přípony jsou: ";
       for(var i = 0; i < serverSettings.editorAllowedExts.length; i++) {
         if(i === (serverSettings.editorAllowedExts.length - 1)) {

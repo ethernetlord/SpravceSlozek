@@ -29,7 +29,7 @@ var fileDetailsManager = {
     document.getElementById("fileDetails-preview").href = "javascript:fileDetailsManager.filePreview('" + tools.xssFilter(path) + "');";
     document.getElementById("fileDetails-edit").style.display = ((isFile && editorManager.isEditable(file, props.size)) ? "inline-block" : "none");
     document.getElementById("fileDetails-edit").href = "javascript:editorManager.enterEditor('" + tools.xssFilter(path) + "');";
-    document.getElementById("fileDetails-archive").style.display = (serverSettings.archiveDownloadsAllowed ? "inline-block" : "none");
+    document.getElementById("fileDetails-archive").style.display = (serverSettings.archiveDownloadURL ? "inline-block" : "none");
     document.getElementById("fileDetails-archive").href = ("javascript:fileDetailsManager.prepare" + funcNamePart + "Archive('" + tools.xssFilter(path) + "');");
 
     document.getElementById("fileDetails-delete").setAttribute("onclick", "fileDetailsManager.delete" + funcNamePart + "('" + tools.xssFilter(path) + "');");

@@ -75,11 +75,6 @@ require_once("../Settings.php");
 session_set_cookie_params(0, "/", "", TRUE, TRUE); // 0 = do konce prohlizeni
 session_start();
 
-// zkontroluj pritomnost CSRF hashe; vytvor, pokud nefunguje
-if(empty($_SESSION["mf_csrfhash"])) {
-  $_SESSION["mf_csrfhash"] = sha1(random_bytes(64));
-}
-
 // instanciuj smerovac a nech ho pracovat
 $router = new RouterHandler();
 $router->zpracuj(NULL);

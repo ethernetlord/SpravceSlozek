@@ -1,6 +1,6 @@
 var editorManager = {
   isEditable: function(filename, size) {
-    if(size != null && size < serverSettings.maxEditSize && (serverSettings.editorAllowedExts === false || serverSettings.editorAllowedExts.indexOf(filename.split(".").pop().toLowerCase()) !== -1)) {
+    if(size != null && size < serverSettings.maxEditSize && (!serverSettings.editorAllowedExts || serverSettings.editorAllowedExts.indexOf(filename.split(".").pop().toLowerCase()) !== -1)) {
       return true;
     }
 
@@ -34,6 +34,7 @@ var editorManager = {
       }
     }
     xhr.open("GET", path + ("?cachebreaker=" + Math.random()), true);
+    xhr.setRequestHeader("Accept", "text/plain");
     xhr.send();
   },
 

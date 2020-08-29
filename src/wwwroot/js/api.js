@@ -47,8 +47,8 @@ var api = {
 
     xhr.open("POST", serverSettings.apiUrl + "?a=" + action, true);
     xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("X-SpravceSlozek-API", "Authorized-Request");
 
-    data = safeCSRF(data);
     if(data instanceof FormData) {
       data.append("dir", globals.currentDir);
     } else {
@@ -71,7 +71,8 @@ var api = {
     xhr.open("POST", serverSettings.apiUrl + "?a=sessionrenew");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.send("dir=" + encodeURIComponent(globals.currentDir) + safeCSRF(""));
+    xhr.setRequestHeader("X-SpravceSlozek-API", "Authorized-Request");
+    xhr.send("dir=" + encodeURIComponent(globals.currentDir));
   },
 
   prepareFileList: function(list1, list2 = null) {

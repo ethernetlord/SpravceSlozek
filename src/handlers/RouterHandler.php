@@ -1,6 +1,6 @@
 <?php
 class RouterHandler extends Handler {
-  private const DIR_NOCHECK_EXCEPTIONS = array("dirlist", "sessionrenew");
+  private const DIR_NOCHECK_EXCEPTIONS = array("dirlist", "sessionrenew", "serversettings");
   private const DISABLED_HANDLERS = array("Handler", "RouterHandler");
   private $handler;
 
@@ -16,6 +16,10 @@ class RouterHandler extends Handler {
   private function kontroly() {
     if(!PHPConfigChecker::kontrola()) {
       $this->JsonChyba("php_config_error");
+    }
+
+    if($_SERVER["REQUEST_METHOD"] !== "POST") {
+      $this->JsonChyba("invalid_http_method");
     }
 
     if(!CSRFChecker::kontrola()) {

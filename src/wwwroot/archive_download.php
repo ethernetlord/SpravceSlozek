@@ -85,7 +85,7 @@ if(!$tar_proc) {
 }
 
 $data_part = fread($tar_proc, 16384);
-if(!$data_part || substr($data_part, $archive_props[3], strlen($archive_props[2])) !== $archive_props[2]) {
+if(!is_string($data_part) || substr($data_part, $archive_props[3], strlen($archive_props[2])) !== $archive_props[2]) {
   pclose($tar_proc);
   http_response_code(500);
   exit();

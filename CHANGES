@@ -1,2 +1,8 @@
 --- 1.5 ---
 * první veřejná verze
+
+--- 2.0 ---
+* bump up čísla verze o celé číslo -> nekompatibilní změny v API
+* změněn způsob detekce CSRF útoků tak, aby se API dalo snadněji externě volat (např. z mobilních aplikací)
+* přidán API endpoint "serversettings" pro externí získání nastavení webové aplikace
+* drobné optimalizace, úpravy

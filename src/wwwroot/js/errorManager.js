@@ -15,8 +15,11 @@ var errorManager = {
       case "php_config_error":
         return ["Server se soubory byl špatně nakonfingurován.", "Kontaktujte prosím správce serveru.", false];
 
+      case "invalid_http_method":
+        return ["Váš prohlížeč odeslal na server požadavek s nesprávnou HTTP metodou.", "Kontaktujte prosím vývojáře této aplikace.", false];
+
       case "csrf_error":
-        return ["Váš prohlížeč odeslal na server neplatný bezpečnostní token.", "Aktualizujte stránku a zkuste to prosím znovu.", false];
+        return ["Váš prohlížeč nedokázal serveru prokázat, že požadavek na API je autorizován.", "Aktualizujte stránku a zkuste to prosím znovu.", false];
 
       case "missing_params":
         return ["V požadavku na API chyběly nějaké parametry.", "Kontaktujte prosím vývojáře této aplikace.", false];

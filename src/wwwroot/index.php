@@ -36,9 +36,6 @@ ini_set('display_errors', 0);
 require_once("../Settings.php");
 session_set_cookie_params(0, "/", "", TRUE, TRUE); // 0 = do konce prohlizeni
 session_start();
-if(empty($_SESSION["mf_csrfhash"])) {
-  $_SESSION["mf_csrfhash"] = sha1(random_bytes(64));
-}
 ?>
 <!DOCTYPE html>
 <html lang="cs">
@@ -142,13 +139,12 @@ var serverSettings = {
   programVersion: "<?= Settings::PROGRAM_VERSION ?>",
   apiUrl: "<?= Settings::API_URL ?>",
   apacheIconsPath: "<?= Settings::APACHE_ICONS_PATH ?>",
-  editorAllowedExts: <?= (Settings::EDITOR_ALLOWED_EXTS["do_check"]) ? ('["' . implode('", "', Settings::EDITOR_ALLOWED_EXTS["allowed_exts"]) . '"]') : "false" ?>,
+  editorAllowedExts: <?= (Settings::EDITOR_ALLOWED_EXTS["do_check"]) ? ('["' . implode('", "', Settings::EDITOR_ALLOWED_EXTS["allowed_exts"]) . '"]') : "null" ?>,
   minFreeSpace: <?= Settings::MIN_FREE_SPACE ?>,
   maxUploadSize: <?= Settings::MAX_UPLOAD_SIZE ?>,
   maxUploadCount: <?= Settings::MAX_UPLOAD_COUNT ?>,
   maxEditSize: <?= Settings::MAX_EDIT_SIZE ?>,
   sessionRenewInterval: <?= Settings::SESSION_RENEW_INTERVAL ?>,
-  archiveDownloadsAllowed: <?= (Settings::ARCHIVE_DOWNLOADS["allowed"]) ? "true" : "false" ?>,
   archiveDownloadURL: <?= (Settings::ARCHIVE_DOWNLOADS["allowed"] ? ('"' . Settings::ARCHIVE_DOWNLOADS["download_url"] . '"') : "null") ?>
 }
 var globals = {
@@ -159,18 +155,6 @@ var globals = {
   navbarHeld: false,
   editorHasChanged: false,
   editorPath: false
-}
-function safeCSRF(data) {
-  // loose comparison; matches undefined too
-  if(data == null) {
-    data = "";
-  }
-  if(data instanceof FormData) {
-    data.append("csrfhash", "<?= $_SESSION["mf_csrfhash"] ?>");
-  } else {
-    data += "&csrfhash=<?= $_SESSION["mf_csrfhash"] ?>";
-  }
-  return data;
 }
 
 window.onload = function() {

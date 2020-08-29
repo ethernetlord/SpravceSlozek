@@ -1,6 +1,6 @@
 <?php
 class Settings {
-  public const PROGRAM_VERSION = "1.5";
+  public const PROGRAM_VERSION = "2.0"; // musi byt string!
 
   public const APACHE_ICONS_PATH = "/icons/";
   public const BACK_URL = "../";
@@ -27,7 +27,7 @@ class Settings {
     "allowed_exts" => array("txt", "htm", "html", "css", "js", "xml", "xhtml", "log", "csv", "tsv", "json")
   );
 
-  public const SESSION_RENEW_INTERVAL = 300; // 5 min; interval v sekundach, kdy se bude volat dummy API endpoint, aby nevyprsela PHP Session pri delsi neaktivite --> odstranuje problemy s kontrolou CSRF
+  public const SESSION_RENEW_INTERVAL = 300; // 5 min; interval v sekundach, kdy se bude volat dummy API endpoint, aby nevyprsela PHP Session pri delsi neaktivite --> muze pomoci pri problemech se stahovanim archivu
 
   // nema efekt, pokud bezi tento program na Windows
   public const ARCHIVE_DOWNLOADS = array(

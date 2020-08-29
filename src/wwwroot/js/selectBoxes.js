@@ -153,7 +153,7 @@ var selectBoxes = {
     }
 
     var funcNamePart = tools.upperCaseFirst(type);
-    document.getElementById("selectDone-archive").style.display = (serverSettings.archiveDownloadsAllowed ? "inline-block" : "none");
+    document.getElementById("selectDone-archive").style.display = (serverSettings.archiveDownloadURL ? "inline-block" : "none");
     document.getElementById("selectDone-archive").href = "javascript:selectBoxes.prepare" + funcNamePart + "Archive();";
 
     document.getElementById("selectDone-delete").style.display = (type === "all" ? "none" : "inline-block");
